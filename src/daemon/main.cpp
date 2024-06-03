@@ -148,7 +148,7 @@ int main (int argc, char **argv) {
 
 	Message msg;
 	while (true) {
-		socklen_t sock_len;
+		socklen_t sock_len = sizeof(addr);
 		int clientSock = accept(sockfd, (struct sockaddr*)&addr, &sock_len);
 		if (clientSock < 0) {
 		    print_error("Error accepting connection\n");
