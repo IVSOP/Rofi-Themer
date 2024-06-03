@@ -25,7 +25,7 @@ std::string rofi_message(const std::string &text, const std::string &info) {
 		"info" + ESCAPE_SEP + info + "\n";
 }
 
-std::string rofi_message(const std::string &text, const std::string &icon, const std::string &info) {
+std::string rofi_message(const std::string &text, const std::string &info, const std::string &icon) {
 	return 
 		text + INIT_ESCAPE +
 		"info" + ESCAPE_SEP + info + ESCAPE_SEP +

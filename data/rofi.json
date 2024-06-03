@@ -3,16 +3,6 @@
 
 	"data": 
 	{
-		"network-manager": {
-			"type": "apply_list",
-			"theme": "blue",
-			"options": [
-				[".config/i3/themes/rofi/0/rofi-network-manager-0.conf", ".config/i3/themes/rofi/0/rofi-network-manager-0.rasi"],
-				[".config/i3/themes/rofi/1/rofi-network-manager-1.conf", ".config/i3/themes/rofi/1/rofi-network-manager-1.rasi"],
-				[],
-				[".config/i3/themes/rofi/3/rofi-network-manager-3.conf", ".config/i3/themes/rofi/3/rofi-network-manager-3.rasi"]
-			]
-		},
 
 		"dmenu": {
 			"type": "list",
@@ -31,6 +21,17 @@
 			"theme": "blue",
 			"options": [
 				".config/i3/themes/rofi/0/menu-theme-0.rasi",".config/i3/themes/rofi/1/menu-theme-1.rasi","",".config/i3/themes/rofi/3/menu-theme-3.rasi"
+			]
+		},
+
+		"network-manager": {
+			"type": "apply_list",
+			"theme": "blue",
+			"options": [
+				[".config/i3/themes/rofi/0/rofi-network-manager-0.conf", ".config/i3/themes/rofi/0/rofi-network-manager-0.rasi"],
+				[".config/i3/themes/rofi/1/rofi-network-manager-1.conf", ".config/i3/themes/rofi/1/rofi-network-manager-1.rasi"],
+				[],
+				[".config/i3/themes/rofi/3/rofi-network-manager-3.conf", ".config/i3/themes/rofi/3/rofi-network-manager-3.rasi"]
 			]
 		},
 

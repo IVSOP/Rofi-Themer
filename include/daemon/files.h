@@ -7,7 +7,8 @@
 #include <nlohmann/json.hpp>
 
 // for convenience
-using json = nlohmann::json;
+// using json = nlohmann::json;
+using json = nlohmann::ordered_json;
 
 struct FileHandler {
 	FileHandler() = delete;

@@ -32,6 +32,8 @@ struct Data {
 	std::string readList(std::string &input, const json &data) const;
 	std::string readListApply(std::string &input, const json &data) const;
 	std::string readApply(std::string &input, const json &data) const;
+
+	std::string menuItem(std::string &input, const json &color_icons, json &data);
 };
 
 #endif

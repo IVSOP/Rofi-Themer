@@ -1,5 +1,6 @@
 #include "data.h"
 #include "errors.h"
+#include "common.h"
 
 Data::Data(const std::string &dataDir)
 : data(parsefile(dataDir, "main.json"))
@@ -67,11 +68,6 @@ void Data::print() const {
 	std::cout << data.dump(4) << std::endl;
 }
 
-std::string Data::menuFirst(std::string &input) {
-
-}
-
-
 unsigned int Data::getThemeID(const std::string &theme) const {
 	// error checking????
 	auto res = themeToID.find(theme);
@@ -88,7 +84,6 @@ std::string Data::readTable(std::string &input, const json &_data) const {
 	size_t pos = input.find('/');
 	if (pos == std::string::npos) {
 		const std::string name = input;
-		input = "";
 
 		if (name == "*") {
 			std::string res = "";
@@ -100,8 +95,10 @@ std::string Data::readTable(std::string &input, const json &_data) const {
 
 			res.pop_back(); // remove extra \n
 			return res;
+		} else {
+			input = "";
+			return readElement(name, input, data);
 		}
-
 
 	} else {
 		const std::string name = input.substr(0, pos);
@@ -109,7 +106,7 @@ std::string Data::readTable(std::string &input, const json &_data) const {
 		return readElement(name, input, data);
 	}
 
-	return "Error in reading table";
+	return "Error in reading table: input is " + input;
 }
 
 std::string Data::readList(std::string &input, const json &data) const {
@@ -196,23 +193,70 @@ std::string Data::read(std::string &input) const {
 	return readTable(input, data);
 }
 
+std::string Data::menuItem(std::string &input, const json &color_icons, json &data) {
+
+}
+
+std::string calcMostUsed(json &data) {
+	const std::string &type = data["type"];
+
+	std::string mostused = "";
+
+	if (type == "table") {
+		// need to calculate average from all children
+		std::unordered_map<std::string, unsigned int> themes;
+		std::string element_theme;
+		for (auto& [key, element] : data["data"].items()) {
+			element_theme = calcMostUsed(element);
+			auto theme = themes.find(element_theme);
+			if (theme != themes.end()) {
+				theme->second ++;
+			} else {
+				themes[element_theme] = 0;
+			}
+		}
+
+		unsigned int max = 0;
+		std::string theme = "";
+		for (const std::pair<const std::string, unsigned int>& pair : themes) {
+			// If the current value is greater than the current maximum value
+			if (pair.second > max) {
+				// Update the maximum value and corresponding string
+				max = pair.second;
+				theme = pair.first;
+			}
+		}
+		mostused = theme;
+		data["theme"] = mostused;
+	} else if (type == "apply") {
+		mostused = data["theme"];
+	} else if (type == "list" || type == "list_picture") {
+		mostused = data["theme"];
+	} else if (type == "apply_list") {
+		mostused = data["theme"];
+	}
+
+	return mostused;
+}
+
 std::string Data::menu(std::string &input, const json &color_icons) {
-// 	// size_t pos = input.find('/');
-// 	// if (pos == std::string::npos) { // show main menu
-// 	// 	std::vector<int> themes = this->main_table.getThemes(this->color_icons.size());
-// 	// 	std::string res = "";
-// 	// 	// display main menu. done here and not in the table itself since it is an exception that can only happen at the start
-// 	// 	for (unsigned int i = 0; i < this->color_icons.size(); i++) {
-// 	// 		res += rofi_message("Theme " + std::to_string(i) + "(" + std::to_string(themes[i]) + "/" + std::to_string(this->main_table.data.size()) + ")", 
-// 	// 			this->color_icons[i], std::to_string(i) + "/");
-// 	// 	}
-// 	// 	return res + rofi_active(this->main_table.calcMostUsed(this->color_icons.size())); // no need for calcMostUsed(), but whatever. Table does not know its theme directly, but there is no Entry to wrap it here
-// 	// 	// TODO got lazy, could use themes vector to calculate this here
-// 	// } else {
-// 	// 	int theme = std::stoi(input.substr(0, pos));
-// 	// 	std::string options = input.substr(pos + 1); // from pos + 1 to the end
-// 	// 	std::string themestr = std::to_string(theme);
-// 	// 	std::string back = "";
-// 	// 	return this->main_table.menu(theme, options, themestr, back, this->color_icons);
-// 	// }
+
+}
+
+std::string Data::menuFirst(std::string &input) {
+	size_t pos = input.find('/');
+	if (pos == std::string::npos) { // show main menu
+		std::string res = "";
+		for (auto& [theme, icon] : data["color-icons"].items()) {
+			res += rofi_message("Theme " + theme, theme, icon);
+		}
+
+		return res + rofi_active(this->themeToID[this->data["theme"]]);
+	} else {
+		// std::string theme = input.substr(0, pos);
+		// std::string options = input.substr(pos + 1); // from pos + 1 to the end
+		// std::string back = "";
+		// return this->main_table.menu(theme, options, themestr, back, this->color_icons);
+		return "dsakjdsalkda";
+	}
 }

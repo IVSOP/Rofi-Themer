@@ -1,12 +1,6 @@
-- [x] Allow '\' for skipping a char
-- [ ] Ignore whitespace besides \n, unless in a "string"
-- [ ] Ignore empty lines aywhere???
-- [ ] Daemon command to refresh data
-- [ ] Save to file
-- [ ] Kill daemon
-- [ ] Logging
-- [ ] Error handling
-- [ ] Constructors in Message and OutMessage to detect errors etc
-- [ ] Remove need for ;[]; instead of just ;;
-- [ ] Use defines in common.h
-- [ ] Change rofi prompt to current table
+- [x] Add JSON
+- [ ] Add saving to a file
+- [ ] Change so that number of each theme used is kept on each object and not calculated constantly
+- [ ] Abstract traversing elements, make it receive a function or something
+- [ ] Add to main menu number of items active of each theme
+- [ ] Make Data parser call func to calculate themes

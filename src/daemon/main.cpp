@@ -102,8 +102,8 @@ int main (int argc, char **argv) {
 
 	// data.print();
 
-	std::string input = "rofi/*";
-	puts(data.read(input).c_str());
+	// std::string input = "rofi/*";
+	// puts(data.read(input).c_str());
 
 	// std::string input = "1/dunst";
 	// std::string res = data.menuFirst(input);

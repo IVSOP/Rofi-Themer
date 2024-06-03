@@ -24,7 +24,7 @@ enum TYPE {
 std::string rofi_active(int active);
 std::string rofi_active(const std::vector<int> &vec);
 std::string rofi_message(const std::string &text, const std::string &info); // no icon
-std::string rofi_message(const std::string &text, const std::string &icon, const std::string &info);
+std::string rofi_message(const std::string &text, const std::string &info, const std::string &icon);
 
 std::string print_back(const std::string &info);
 std::string print_all(const std::string &info);
