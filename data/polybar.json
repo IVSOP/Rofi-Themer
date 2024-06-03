@@ -1,0 +1,30 @@
+{
+	"theme": "blue",
+
+	"data":
+	{
+		"polywins": {
+			"type": "apply",
+			"theme": "blue",
+			"options": [
+				".config/i3/themes/polybar/0/polywins-colors-0",".config/i3/themes/polybar/1/polywins-colors-1", "", ".config/i3/themes/polybar/3/polywins-colors-3"
+			]
+		},
+
+		"bar": {
+			"type": "apply",
+			"theme": "blue",
+			"options": [
+				"custombar","custombar-blue", "", "custombar-purple"
+			]
+		},
+
+		"theme": {
+			"type": "apply",
+			"theme": "blue",
+			"options": [
+				".config/i3/themes/polybar/0/theme-0",".config/i3/themes/polybar/1/theme-1","",".config/i3/themes/polybar/3/theme-3"
+			]
+		}
+	}
+}

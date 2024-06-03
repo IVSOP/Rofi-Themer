@@ -1,20 +1,13 @@
-/*
-FUTURE OPTIMIZATIONS
-
-
-mmap()
-memchr() to find the \n
-
-use
-#define likely __glibc_likely
-#define unlikely __glibc_unlikely
-
-*/
 #ifndef FILEHANDLER_H
 #define FILEHANDLER_H
 
 #include <string>
 #include <fstream>
+
+#include <nlohmann/json.hpp>
+
+// for convenience
+using json = nlohmann::json;
 
 struct FileHandler {
 	FileHandler() = delete;
@@ -23,7 +16,7 @@ struct FileHandler {
 
 	// reads line, stores it into buffer. buffer is reset at the start. '\' makes it so that next character is ignored
 	// no error checking is performed at all, other than returning false on EOF
-	bool getline(std::string &buffer); // make it so that buffer is internal to this class????
+	json readjson(); // make it so that buffer is internal to this class????
 
 
 	std::ifstream file;

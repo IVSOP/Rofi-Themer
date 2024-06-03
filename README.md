@@ -19,7 +19,10 @@ At its core, it is just a [rofi script](https://davatorium.github.io/rofi/1.7.5/
 - [Example usage](#Example_usage)
 *******
 
-There is an example dataset provided in data/, which I will use for all examples.
+## Clone recursively
+```bash
+git clone --recurse-submodules git@github.com:IVSOP/Rofi-Themer.git
+```
 
 <div id="Compiling"/>
 

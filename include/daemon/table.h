@@ -14,6 +14,7 @@ struct Table {
 	Table(const std::string &path, const std::string &dataDir, int numThemes); // paths are all absolute, dataDir is used to parse subtables (was a bandaid fix, will work fine)
 	~Table() = default;
 
+
 	void print(int depth_level);
 
 	int calcMostUsed(int numThemes) const;

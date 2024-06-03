@@ -46,7 +46,7 @@ void handleMessage(Data &data, const Message &msg, int clientSock) {
 			reply(data.read(string), clientSock);
 			break;
 		case MENU:
-			reply(data.menu(string), clientSock);
+			reply(data.menuFirst(string), clientSock);
 			break;
 		default:
 			reply("error", clientSock);
@@ -100,11 +100,13 @@ int main (int argc, char **argv) {
 	data.print();
 #endif
 
-	// std::string input = "rofi/*";
-	// puts(data.read(input).c_str());
+	// data.print();
+
+	std::string input = "rofi/*";
+	puts(data.read(input).c_str());
 
 	// std::string input = "1/dunst";
-	// std::string res = data.menu(input);
+	// std::string res = data.menuFirst(input);
 
 	//////////////////////////////////////////////// creating daemon
 #ifndef DEBUG

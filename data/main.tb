@@ -1,8 +1,0 @@
-background;list_picture;1;0;[/home/ivsopi3/BG/TF22.jpg;/home/ivsopi3/BG/TF21.jpg;/home/ivsopi3/BG/HorizonZD.jpg;/home/ivsopi3/BG/BladeR1.jpg;\
-/home/ivsopi3/BG/Dishonored-palace.png;/home/ivsopi3/BG/Dishonored-palace-2.png;/home/ivsopi3/BG/Dishonored-palace-3.png;/home/ivsopi3/BG/Dishonored-palace-4.png;/home/ivsopi3/BG/Dishonored-palace-5.png];\
-[/home/ivsopi3/BG/KSP1.jpg;/home/ivsopi3/BG/KSP2.png;/home/ivsopi3/BG/KSP3.png;/home/ivsopi3/BG/KSP4.png];[];[/home/ivsopi3/BG/BladeR3.jpg]
-dunst;apply;1;.config/i3/themes/dunst/0/dunstrc-0;.config/i3/themes/dunst/1/dunstrc-1;.config/i3/themes/dunst/2/dunstrc-2;.config/i3/themes/dunst/3/dunstrc-3
-polybar;sub
-rofi;sub
-i3;apply;1;.config/i3/themes/i3/0/theme-0;.config/i3/themes/i3/1/theme-1;.config/i3/themes/i3/2/theme-2;.config/i3/themes/i3/3/theme-3
-i3lock;apply;1;.config/i3/lock/noise_red.png;.config/i3/lock/noise_blue.png;.config/i3/lock/noise_white.png;.config/i3/lock/noise_purple.png
