@@ -21,7 +21,19 @@ struct Data {
 
 	void print() const;
 	std::string read(std::string &input) const;
-	std::string menu(std::string &input, const json &color_icons);
+	/*
+	theme: theme that was clicked in the main menu
+	input: query string parsed so far
+	back: string to place as a path to go back
+	name: name of option clicked to get here. need this to add into 'back' for the next recursive call
+	data: json of current object
+	color_icons: color icons
+	*/
+	// std::string menu(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &data, const json &color_icons);
+	std::string menuTable(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons);
+	std::string menuList(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons);
+	std::string menuListPicture(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons);
+
 
 	unsigned int getThemeID(const std::string &theme) const;
 	// tries to find the element in the given data 
@@ -32,8 +44,6 @@ struct Data {
 	std::string readList(std::string &input, const json &data) const;
 	std::string readListApply(std::string &input, const json &data) const;
 	std::string readApply(std::string &input, const json &data) const;
-
-	std::string menuItem(std::string &input, const json &color_icons, json &data);
 };
 
 #endif

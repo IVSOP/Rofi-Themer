@@ -4,3 +4,4 @@
 - [ ] Abstract traversing elements, make it receive a function or something
 - [ ] Add to main menu number of items active of each theme
 - [ ] Make Data parser call func to calculate themes
+- [ ] Remove unused files
