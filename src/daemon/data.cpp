@@ -251,7 +251,11 @@ std::string Data::menuList(const std::string &theme, std::string &input, const s
 	std::string res = "";
 	int i = 0;
 	for (auto& element : data["options"][themeID]) {
-		res += rofi_message(element, back + name + "/" + std::to_string(i) + "/", color_icons[data["theme"]]);
+		if (i == selected) {
+			res += rofi_message(element, back + name + "/" + std::to_string(i) + "/", color_icons[data["theme"]]);
+		} else {
+			res += rofi_message(element, back + name + "/" + std::to_string(i) + "/");
+		}
 		i++;
 	}
 
