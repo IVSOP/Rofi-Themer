@@ -32,7 +32,7 @@ struct Data {
 	// std::string menu(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &data, const json &color_icons);
 	std::string menuTable(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons);
 	std::string menuList(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons);
-	std::string menuListPicture(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons);
+	std::string menuListPicture(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data);
 
 
 	unsigned int getThemeID(const std::string &theme) const;

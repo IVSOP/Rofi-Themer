@@ -235,12 +235,55 @@ std::string calcMostUsed(json &data) {
 	return mostused;
 }
 
-std::string Data::menuList(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons) {
-	return "in list" + print_back(back);
+std::string Data::menuList(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &data, const json &color_icons) {
+	size_t pos = input.find('/');
+	if (pos != std::string::npos) {
+		int option = std::stoi(input.substr(0, pos));
+		data["selected"] = option;
+		// theme may or may not be the same here
+		data["theme"] = theme;
+	}
+
+	int themeID = getThemeID(theme);
+	int selected = data["selected"];
+
+	// display list options is always done no matter what
+	std::string res = "";
+	int i = 0;
+	for (auto& element : data["options"][themeID]) {
+		res += rofi_message(element, back + name + "/" + std::to_string(i) + "/", color_icons[data["theme"]]);
+		i++;
+	}
+
+
+	res += print_back(back);
+	if (data["theme"] == theme) {
+		res += rofi_active(selected);
+	}
+
+	return res;
 }
 
-std::string Data::menuListPicture(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons) {
-	return "in list picture" + print_back(back);
+std::string Data::menuListPicture(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &data) {
+	size_t pos = input.find('/');
+	if (pos != std::string::npos) {
+		int option = std::stoi(input.substr(0, pos));
+		data["selected"] = option;
+		// theme may or may not be the same here
+		data["theme"] = theme;
+	}
+
+	int themeID = getThemeID(theme);
+	int selected = data["selected"];
+
+	// display list options is always done no matter what
+	std::string res = "";
+	int i = 0;
+	for (auto& element : data["options"][themeID]) {
+		res += rofi_message(element, back + name + "/" + std::to_string(i) + "/", element);
+		i++;
+	}
+	return res + print_back(back) + rofi_active(selected);
 }
 
 std::string Data::menuTable(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons) {
@@ -277,7 +320,7 @@ std::string Data::menuTable(const std::string &theme, std::string &input, const 
 		} else if (type == "list") { // go into the list
 			return menuList(theme, input, back + name + "/", nextname, next, color_icons);
 		} else if (type == "list_picture") { // go into the picture list
-			return menuListPicture(theme, input, back + name + "/", nextname, next, color_icons);
+			return menuListPicture(theme, input, back + name + "/", nextname, next);
 		}
 
 		res = "Error";
@@ -291,7 +334,7 @@ std::string Data::menuFirst(std::string &input) {
 	size_t pos = input.find('/');
 	if (pos == std::string::npos) { // show main menu
 		std::string res = "";
-		for (auto& [theme, icon] : data["color-icons"].items()) {
+		for (auto& [theme, icon] : this->data["color-icons"].items()) {
 			res += rofi_message("Theme " + theme, theme + "/", icon);
 		}
 
@@ -303,8 +346,8 @@ std::string Data::menuFirst(std::string &input) {
 
 		// printf("goint into a table. theme is %s. input is %s\n", theme.c_str(), input.c_str());
 		
-		std::string res = menuTable(theme, input, back, theme, data, data["color-icons"]);
-		data["theme"] = calcMostUsed(data);
+		std::string res = menuTable(theme, input, back, theme, this->data, this->data["color-icons"]);
+		this->data["theme"] = calcMostUsed(this->data);
 		return res;
 	}
 }

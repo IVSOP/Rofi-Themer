@@ -5,3 +5,4 @@
 - [ ] Add to main menu number of items active of each theme
 - [ ] Make Data parser call func to calculate themes
 - [ ] Remove unused files
+- [ ] Stop passin color icons as arg
