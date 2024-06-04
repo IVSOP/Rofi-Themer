@@ -159,8 +159,10 @@ int main (int argc, char **argv) {
 		}
 
 		read(clientSock, &msg, sizeof(Message));
+#ifdef DEBUG
 		puts("received:");
 		puts(msg.str);
+#endif
 		handleMessage(data, msg, clientSock);
 
 		close(clientSock);

@@ -2,6 +2,8 @@
 #include "errors.h"
 #include "common.h"
 
+#define ALL_STRING "*" // string representing ALL. whatever you put here will be a reserved name, no element in your json can have this name
+
 Data::Data(const std::string &dataDir)
 : data(parsefile(dataDir, "main.json"))
 {
@@ -293,10 +295,10 @@ std::string Data::menuListPicture(const std::string &theme, std::string &input, 
 std::string Data::menuTable(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons) {
 	json &data = _data["data"];
 	size_t pos = input.find('/');
-	std::string res = "";
+	std::string res = rofi_message("All", back + name + "/" + ALL_STRING + "/", color_icons[theme]);
 	if (pos == std::string::npos) { // display all entries in the table
 		std::vector<int> ids;
-		int i = 0;
+		int i = 1;
 		for (auto& [key, element] : data.items()) {
 			res += rofi_message(key, back + name + "/" + key + "/", color_icons[element["theme"]]);
 			// printf("info: %s\n", (back + name + "/" + key + "/").c_str());
@@ -309,9 +311,15 @@ std::string Data::menuTable(const std::string &theme, std::string &input, const 
 		return res + print_back(back) + rofi_active(ids);
 	} else { // go into table option
 		const std::string nextname = input.substr(0, pos);
-		input.erase(0, pos + 1);
+
+		if (nextname == ALL_STRING) {
+			applyAll(theme, _data);
+			input = "";
+			return menuTable(theme, input, back, name, _data, color_icons);
+		}
 
 		// printf("table option selected: %s input is %s\n", nextname.c_str(), input.c_str());
+		input.erase(0, pos + 1);
 
 		json &next = data[nextname];
 		const std::string &type = next["type"];
@@ -331,6 +339,22 @@ std::string Data::menuTable(const std::string &theme, std::string &input, const 
 	}
 
 	return res + print_back(back);
+}
+
+void Data::applyAll(const std::string &theme, json &data) {
+	const std::string &type = data["type"];
+
+	if (type == "table") {
+		for (auto& element : data["data"]) {
+			applyAll(theme, element);
+		}
+	} else if (type == "list" || type == "list_picture") { // if theme changed, set to option 0
+		if (data["theme"] != theme) {
+			data["selected"] = 0;
+		}
+	}
+
+	data["theme"] = theme;
 }
 
 
