@@ -32,13 +32,15 @@ The script `build.sh` will configure CMake and build the code for you.
 
 Three binaries are created in build/: Rofi-Themer-menu, Rofi-Themer-daemon and Rofi-Themer-read, however you do not need to run them directly.
 
+To specify a location for the socket, pass the full path as an argument: `./build.sh <full path to socket>`
+
 *******
 
 <div id="Running"/>
 
 ## Running
 
-<sup>(All paths must probably have a trailing '/' due to laziness)</sup>
+<sup>(All paths must have a trailing '/' due to laziness)</sup>
 
 Daemon - parses data and listens on the socket: `./Scripts/daemon.sh <dataset path>`
 
@@ -62,64 +64,142 @@ Please see [Data format](#Data_format) to better understand this behaviour and t
 
 ## Data format
 
-There are two main files:
-- main.tb: the first table/menu to be parsed
-- color-icons: contains a path per line, where line [0] contains the path to the icon representing theme [0]
+The data files are stored as json. The first table is called `main.json` and is the only one that contains the color icons. Each of the other tables are on a separate file.
 
-All data in the tables is contained in a simple CSV format, where each line represents an entry in the table. Their usual format is 
+These tables have this format:
 
+```json
+"theme": "<theme name>", // theme currently applied to the table
+
+"type": "table",
+
+"data": { // everything inside this will be entries in the menu
+
+	"<name of option>": {
+		"type": "<type>", // see Data types below
+		"theme": "<theme name>", // theme currently applied to this entry
+		"selected": <number of selected option, starting at 0>, // only used in lists. see below
+		"options": [
+			["blabla", "blabla"],
+			[], // there are no options for a theme, do this
+			...
+		]
+	},
+
+	..........
+}
 ```
-entry_name;type;number of currently selected theme;option for theme 0; option for theme 1;...
+
+
+### Color icons
+
+The color icons are stored in this way, **only** in the ma table:
+
+And the color icons:
+```json
+"color-icons": {
+	"<name1>": "icon1.png", // use full paths
+	"<name2>": "icon2.png",
+}
 ```
 
-For now the parsing is very limited, whitespace is not ignored and there are no comments, however I might change it to json or something and implement better features
+The order of the options will correspond to the order of these icons:
 
-`type` can be one of these 5 (the literal strings):
+```json
+...
+options: [
+	"option for theme <name1>"
+	"option for theme <name2>"
+]
+```
+
+## Data types
 
 ### apply:
 
-Means selecting this option immediately applies the theme to it. It is the simplest, and you can think of it as the base option.
+Means selecting this option immediately applies the theme to it. It is the simplest type.
 
-Syntax: `entry_name;apply;number of currently selected theme;option for theme 0; option for theme 1;...`
+Example:
+
+```json
+"dunst": {
+	"type": "apply",
+	"theme": "blue",
+	"options": [
+		".config/i3/themes/dunst/0/dunstrc-0", // option for first theme
+		".config/i3/themes/dunst/1/dunstrc-1", // option for second theme
+		".config/i3/themes/dunst/2/dunstrc-2", // ...
+		".config/i3/themes/dunst/3/dunstrc-3"
+	]
+}
+```
 
 ### apply_list:
 
 The same as above, except the options have many values instead of one.
+```json
+"network-manager": {
+	"type": "apply_list",
+	"theme": "blue",
+	"options": [
+		[".config/i3/themes/rofi/0/rofi-network-manager-0.conf", ".config/i3/themes/rofi/0/rofi-network-manager-0.rasi"],
+		[".config/i3/themes/rofi/1/rofi-network-manager-1.conf", ".config/i3/themes/rofi/1/rofi-network-manager-1.rasi"],
+		[],
+		[".config/i3/themes/rofi/3/rofi-network-manager-3.conf", ".config/i3/themes/rofi/3/rofi-network-manager-3.rasi"]
+	]
+}
+```
 
-I made this to allow applying many options together, with a single click on this entry.
+For example, instead of returning `something`, it would return
+```
+something1
+something2
+something3
+...
+```
 
-Syntax: `entry_name;apply_list;number of currently selected theme;[blablabla;blablabla;...];[a;b;c];...`
+### table:
 
-In this case, for example, `a;b;c` are options that are all selected at once when clicking this entry with theme [1].
+Recurse into a new menu, from other table. The table is in a new file, called `<name>.json`.
 
-### sub:
+These subtables are exactly the same as the main one, except without color icons.
 
-Recurse into a subtable. The table is in a new file.
+On the table that 'includes' this one, you should write:
 
-Syntax: `entry_name;sub`
+```json
+"rofi": {
+	"type": "table"
+},
+```
 
-A file `<data folder>/<entry_name>.tb` must exist, to be parsed into the new table.
+Which tells it to get the values from another file automatically.
 
 ### list:
 
-Recurse into a list, where only 1 option can be applied at once.
+Show the menu of a list. This differs from tables, as only 1 option is allowed to be selected.
 
-Acts similarly to a subtable, however, like I said, only 1 option can be selected.
-
-Syntax: `entry_name;list;number of currently selected theme;number of index selected inside the [list] (the list corresponding to the theme);[dsadsadsa;dsadas;dsa];[a;b;c];............`
+See the example below.
 
 ### list_picture:
 
-Exactly the same as above, but the entries are displayed as images.
+Exactly the same as above, but the entries are displayed as the icons, instead of showing the theme icon.
 
 I made this to allow, for example, previewing background images when selecting them.
 
-Syntax: same as above, but `list_picture` instead of `list`
-
-
-#### Empty entries:
-
-To leave something blank, use ;; or ;[]; in the case of lists. Empty options cannot be applied.
+Example:
+```json
+"background": {
+	"type": "list_picture",
+	"theme": "blue",
+	"selected": 0, // current active option will be options[theme_index][selected]
+	"options": [
+		["/home/ivsopi3/BG/TF22.jpg","/home/ivsopi3/BG/TF21.jpg"],
+		["/home/ivsopi3/BG/KSP1.jpg","/home/ivsopi3/BG/KSP2.png","/home/ivsopi3/BG/KSP3.png"],
+		[],
+		["/home/ivsopi3/BG/BladeR3.jpg"]
+	]
+}
+```
 
 *******
 
@@ -131,13 +211,14 @@ The way I use this is just to store symlinks that point to the config files of a
 
 I use i3, so in the config file(s), I have to first execute the daemon, passing in the path do the data folder:
 
-```
+```bash
+#                        the script to lauch daemon                  data folder ending in /
 exec --no-startup-id $HOME/Desktop/Rofi-Themer/Scripts/daemon.sh $HOME/Desktop/Rofi-Themer/data/
 ```
 
 I also bind Win+Menu to open up the menu:
 
-```
+```bash
 bindsym $mod+Menu exec --no-startup-id $HOME/Desktop/Rofi-Themer/Scripts/menu.sh
 ```
 

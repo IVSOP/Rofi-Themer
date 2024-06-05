@@ -30,7 +30,9 @@
 			"type": "apply",
 			"theme": "blue",
 			"options": [
-				".config/i3/themes/dunst/0/dunstrc-0",".config/i3/themes/dunst/1/dunstrc-1",".config/i3/themes/dunst/2/dunstrc-2",
+				".config/i3/themes/dunst/0/dunstrc-0",
+				".config/i3/themes/dunst/1/dunstrc-1",
+				".config/i3/themes/dunst/2/dunstrc-2",
 				".config/i3/themes/dunst/3/dunstrc-3"
 			]
 		},
