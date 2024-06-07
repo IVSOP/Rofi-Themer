@@ -6,3 +6,4 @@
 - [ ] Remove unused files
 - [ ] Stop passin color icons as arg
 - [ ] Check for empty strings in apply, so that option does not exist
+- [ ] Fix readme json code blocks markdown being messed up

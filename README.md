@@ -47,10 +47,10 @@ Daemon - parses data and listens on the socket: `./Scripts/daemon.sh <dataset pa
 Menu - creates the menus themselves (feel free to edit it, it has my custom rofi command): `./Scripts/menu.sh`
 
 Read - queries daemon for stored data: `./Scripts/read.sh <string>`. The string can be, for example:
-- "dunst": reads the value contained there (Its type is apply)
-- "rofi/theme": same, but reads the value from the subtable "rofi" (Its type is also apply)
-- "rofi/network-manager": gets all values in network-manager, from subtable "rofi", separated by newline (Its type is apply_list)
-- "polybar/*": gets every value contained in the subtable "polybar", recursively, separated by newline.
+- `dunst`: reads the value contained there (Its type is apply)
+- `rofi/theme`: same, but reads the value from the subtable "rofi" (Its type is also apply)
+- `rofi/network-manager`: gets all values in network-manager, from subtable "rofi", separated by newline (Its type is apply_list)
+- `polybar/*`: gets every value contained in the subtable "polybar", recursively, separated by newline.
 
 Please see [Data format](#Data_format) to better understand this behaviour and the meaning of the types
 
@@ -107,7 +107,7 @@ The order of the options will correspond to the order of these icons:
 
 ```json
 ...
-options: [
+"options": [
 	"option for theme <name1>"
 	"option for theme <name2>"
 ]

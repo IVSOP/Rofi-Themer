@@ -28,9 +28,6 @@ add_executable(Rofi-Themer-daemon
         src/daemon/main.cpp
 		src/daemon/files.cpp
 		src/daemon/data.cpp
-		src/daemon/entry.cpp
-		src/daemon/table.cpp
-		src/daemon/list.cpp
 		src/daemon/common.cpp
 )
 
