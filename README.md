@@ -8,7 +8,7 @@ At its core, it is just a [rofi script](https://davatorium.github.io/rofi/1.7.5/
 
 | | |
 | ---------------------- | ---------------------- |
-| ![all_blue](images/all_blue.jpg) | ![blue_red](iomages/blue_red.jpg) |
+| ![all_blue](images/all_blue.jpg) | ![blue_red](images/blue_red.jpg) |
 | ![all_red_rofi](images/all_red_rofi.jpg) | ![blue_purple](images/blue_purple.jpg) |
 
 
