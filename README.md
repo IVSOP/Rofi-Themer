@@ -40,9 +40,7 @@ To specify a location for the socket, pass the full path as an argument: `./buil
 
 ## Running
 
-<sup>(All paths must have a trailing '/' due to laziness)</sup>
-
-Daemon - parses data and listens on the socket: `./Scripts/daemon.sh <dataset path>`
+Daemon - parses data and listens on the socket: `./Scripts/daemon.sh <dataset path>`. Running the daemon will create the socket, if it does not exist.
 
 Menu - creates the menus themselves (feel free to edit it, it has my custom rofi command): `./Scripts/menu.sh`
 
