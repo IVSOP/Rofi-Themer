@@ -5,6 +5,7 @@
 #include <string>
 #include <iomanip>
 #include <iostream>
+#include <cstdint>
 
 // type of entry
 // ended up not using this powers of 2, didnt know how to do it in a switch statement

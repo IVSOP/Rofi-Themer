@@ -254,7 +254,10 @@ std::string Data::menuList(const std::string &theme, std::string &input, const s
 	int i = 0;
 	for (auto& element : data["options"][themeID]) {
 		if (i == selected) {
-			res += rofi_message(element, back + name + "/" + std::to_string(i) + "/", color_icons[data["theme"]]);
+			// explicit otherwise gcc 14 shits itself
+			std::string theme = data["theme"];
+			std::string color_icon = color_icons[theme];
+			res += rofi_message(element, back + name + "/" + std::to_string(i) + "/", color_icon);
 		} else {
 			res += rofi_message(element, back + name + "/" + std::to_string(i) + "/");
 		}
@@ -299,8 +302,11 @@ std::string Data::menuTable(const std::string &theme, std::string &input, const 
 	if (pos == std::string::npos) { // display all entries in the table
 		std::vector<int> ids;
 		int i = 1;
+		std::string theme, color_icon;
 		for (auto& [key, element] : data.items()) {
-			res += rofi_message(key, back + name + "/" + key + "/", color_icons[element["theme"]]);
+			theme = element["theme"];
+			color_icon = color_icons[theme];
+			res += rofi_message(key, back + name + "/" + key + "/", color_icon);
 			// printf("info: %s\n", (back + name + "/" + key + "/").c_str());
 			if (element["theme"] == theme) {
 				ids.push_back(i);

@@ -2,6 +2,7 @@
 #define MESSAGE_H
 
 #include <string.h>
+#include <cstdint>
 
 #define MESSAGE_STR_SIZE 1024
 
