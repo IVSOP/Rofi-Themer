@@ -13,26 +13,40 @@ At its core, it is just a [rofi script](https://davatorium.github.io/rofi/1.7.5/
 
 
 *******
+- [Overview](#Overview)
 - [Compiling](#Compiling)
 - [Running](#Running)
 - [Data format](#Data_format)
 - [Example usage](#Example_usage)
 *******
 
-## Clone recursively
-```bash
-git clone --recurse-submodules git@github.com:IVSOP/Rofi-Themer.git
-```
+<div id="Overview"/>
+
+## Overview
+
+This project has a daemon, a program to query the daemon for information, and another to query it for menu data so that rofi can display it.
+
+The daemon reads config data, parses it, and listens in on a unix socket.
+
+The menu program can then be used to select themes using rofi. You can then use the read program to query the daemon and have it return strings, in my case paths to the configurations for the selected theme.
+
+*******
 
 <div id="Compiling"/>
 
 ## Compiling
 
-The script `build.sh` will configure CMake and build the code for you.
+Don't forget to clone recursively!!!
+
+```bash
+git clone --recurse-submodules git@github.com:IVSOP/Rofi-Themer.git
+```
+
+The script `build.sh` will configure CMake and build the code.
 
 Three binaries are created in build/: Rofi-Themer-menu, Rofi-Themer-daemon and Rofi-Themer-read, however you do not need to run them directly.
 
-To specify a location for the socket, pass the full path as an argument: `./build.sh <full path to socket>`
+To specify a location for the socket, pass the full path as an argument: `./build.sh <full path to socket, including its name>`
 
 *******
 
@@ -45,15 +59,15 @@ Daemon - parses data and listens on the socket: `./Scripts/daemon.sh <dataset pa
 Menu - creates the menus themselves (feel free to edit it, it has my custom rofi command): `./Scripts/menu.sh`
 
 Read - queries daemon for stored data: `./Scripts/read.sh <string>`. The string can be, for example:
-- `dunst`: reads the value contained there (Its type is apply)
-- `rofi/theme`: same, but reads the value from the subtable "rofi" (Its type is also apply)
-- `rofi/network-manager`: gets all values in network-manager, from subtable "rofi", separated by newline (Its type is apply_list)
-- `polybar/*`: gets every value contained in the subtable "polybar", recursively, separated by newline.
+- `dunst`: reads the value for the dunst option
+- `rofi/theme`: goes into the subtable rofi and reads the value for the theme option
+- `polybar/*`: goes into the subtable polybar and reads all values for all options, **in order** (even though json is unordered)
 
-Please see [Data format](#Data_format) to better understand this behaviour and the meaning of the types
+Multiple options are always separated by newline.
 
+Please see [Data format](#Data_format) to better understand what will be returned depending on the data types.
 
-> :warning: Unfortunately rofi messes up passing arguments to the scripts, so some things had to be hardcoded, such as the path to the binaries inside the menu and read scripts, and the location of the socket, defined in every main. However, you can choose a new location for the socket by passing it to build.sh as an argument (use the full path, and name the socket).
+> :warning: Unfortunately rofi messes up passing arguments to the scripts, so some things had to be hardcoded, such as the path to the binaries inside the menu and read scripts, and the location of the socket, defined in every main.cpp. However, you can choose a new location for the socket by passing it to build.sh as an argument, like stated in [Compiling](#Compiling)
 > There is also currently no way to properly install this, so you can also have lots of fun editing the paths in the Scripts/ as you see fit.
 
 *******
@@ -62,60 +76,67 @@ Please see [Data format](#Data_format) to better understand this behaviour and t
 
 ## Data format
 
-The data files are stored as json. The first table is called `main.json` and is the only one that contains the color icons. Each of the other tables are on a separate file.
+The data files are stored as json. The first table is called `main.json`. If you are lazy, just use the provided data and see how it works.
 
-These tables have this format:
+The tables have this format:
 
-```json
-"theme": "<theme name>", // theme currently applied to the table
+```js
+{
+	"theme": "blue"
 
-"type": "table",
+	"type": "table",
 
-"data": { // everything inside this will be entries in the menu
+	"data": {
 
-	"<name of option>": {
-		"type": "<type>", // see Data types below
-		"theme": "<theme name>", // theme currently applied to this entry
-		"selected": <number of selected option, starting at 0>, // only used in lists. see below
-		"options": [
-			["blabla", "blabla"],
-			[], // there are no options for a theme, do this
-			...
-		]
-	},
+		"<name of option>": { // things here can be very different depending on data type, keep reading
+			"type": "<type>",
+			"theme": "<theme name>",
+			"selected": 2
+			"options": [
+				["blabla", "blabla"],
+				[],
+				...
+			]
+		},
 
-	..........
+		..........
+	}
 }
 ```
 
+The theme is a string with the name of the theme currently selected by this table.
 
-### Color icons
+The type indicates the data type, in this case a table. All data types are explained below.
 
-The color icons are stored in this way, **only** in the ma table:
+Data contains a bunch of options, which can be seen as entries in the table. Each entry has a type, selected theme,
+selected option, selected sub-option, and the options themselves, which represents the strings to show in the menu, and/or to make available when queried.
 
-And the color icons:
-```json
-"color-icons": {
-	"<name1>": "icon1.png", // use full paths
-	"<name2>": "icon2.png",
-}
-```
-
-The order of the options will correspond to the order of these icons:
-
-```json
-...
+These options work like this:
+```js
 "options": [
-	"option for theme <name1>"
-	"option for theme <name2>"
+	["theme 0 option 0", "theme 0 option 1"],
+	[], // can be empty if theme should have no options
+	["theme 2 option 0", "theme 2 option 1"]
 ]
 ```
+
+As you can see, themes have indices. These are assigned to the themes via the color icons, which are only present in the main table:
+```json
+"color-icons": {
+	"red": "red1.png",
+	"blue": "blue1.png",
+	"white": "white1.png",
+	"purple": "purple1.png"
+}
+```
+
+In this exampple, the "red" theme is the index 0, and the image to be used by it is "red1.png". You should probably use full paths for the images.
 
 ## Data types
 
 ### apply:
 
-Means selecting this option immediately applies the theme to it. It is the simplest type.
+Means selecting this option immediately applies the theme to it. It is the simplest type. If you click it in the menu, its theme changes straight away.
 
 Example:
 
@@ -132,9 +153,12 @@ Example:
 }
 ```
 
+In this example, if you were to click "dunst" while in the second theme, the theme is instantly applied and querying this option would return ".config/i3/themes/dunst/1/dunstrc-1".
+
 ### apply_list:
 
-The same as above, except the options have many values instead of one.
+The same as above, except the options have many values instead of one, only the query response changes.
+
 ```json
 "network-manager": {
 	"type": "apply_list",
@@ -148,11 +172,11 @@ The same as above, except the options have many values instead of one.
 }
 ```
 
-For example, instead of returning `something`, it would return
+For example, instead of the query returning `something` like in apply, it would instead return
 ```
-something1
-something2
-something3
+something1\n
+something2\n
+something3\n
 ...
 ```
 
@@ -171,6 +195,8 @@ On the table that 'includes' this one, you should write:
 ```
 
 Which tells it to get the values from another file automatically.
+
+Queries here don't make sense.
 
 ### list:
 
@@ -191,13 +217,17 @@ Example:
 	"theme": "blue",
 	"selected": 0, // current active option will be options[theme_index][selected]
 	"options": [
-		["/home/ivsopi3/BG/TF22.jpg","/home/ivsopi3/BG/TF21.jpg"],
-		["/home/ivsopi3/BG/KSP1.jpg","/home/ivsopi3/BG/KSP2.png","/home/ivsopi3/BG/KSP3.png"],
+		["BG/TF22.jpg","BG/TF21.jpg"],
+		["BG/KSP1.jpg","BG/KSP2.png","BG/KSP3.png"],
 		[],
-		["/home/ivsopi3/BG/BladeR3.jpg"]
+		["BG/BladeR3.jpg"]
 	]
 }
 ```
+
+For example, let's say you are in the theme 1 menu. This means that when you click this option, a new menu will be shown, with the options \["BG/KSP1.jpg","BG/KSP2.png","BG/KSP3.png"\]. You can then select one of these options.
+
+When querying, only the selected option will be returned, like "BG/KSP1.jpg".
 
 *******
 
