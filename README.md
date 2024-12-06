@@ -63,7 +63,7 @@ Read - queries daemon for stored data: `./Scripts/read.sh <string>`. The string 
 - `rofi/theme`: goes into the subtable rofi and reads the value for the theme option
 - `polybar/*`: goes into the subtable polybar and reads all values for all options, **in order** (even though json is unordered)
 
-Multiple options are always separated by newline.
+If query returns multiple options, they are always separated by newline.
 
 Please see [Data format](#Data_format) to better understand what will be returned depending on the data types.
 
@@ -235,7 +235,7 @@ When querying, only the selected option will be returned, like "BG/KSP1.jpg".
 
 ## Example usage
 
-The way I use this is just to store symlinks that point to the config files of a certain theme.
+The way I use this is just to store paths that point to the config files of a certain theme. Programs use some config file, but this file is actually a symlink which changes depending on the theme I select.
 
 I use i3, so in the config file(s), I have to first execute the daemon, passing in the path do the data folder:
 
