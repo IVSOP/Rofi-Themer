@@ -64,10 +64,10 @@
 			"type": "apply",
 			"theme": "blue",
 			"options": [
-				".config/i3/themes/i3/0/theme-0",
-                ".config/i3/themes/i3/1/theme-1",
-                ".config/i3/themes/i3/2/theme-2",
-                ".config/i3/themes/i3/3/theme-3"
+				".config/i3/themes/theme-red",
+                ".config/i3/themes/theme-blue",
+                ".config/i3/themes/theme-red",
+                ".config/i3/themes/theme-purple"
 			]
 		},
 		
