@@ -9,10 +9,23 @@
 			"theme": "blue",
 			"selected": 0,
 			"options": [
-				[".config/i3/themes/rofi/0/dmenu/normal.rasi",".config/i3/themes/rofi/0/dmenu/large.rasi",".config/i3/themes/rofi/0/dmenu/spotlight.rasi",".config/i3/themes/rofi/0/dmenu/squared_material.rasi",".config/i3/themes/rofi/0/dmenu/win_grid.rasi",".config/i3/themes/rofi/0/dmenu/win_list.rasi"],
-				[".config/i3/themes/rofi/1/dmenu/normal.rasi",".config/i3/themes/rofi/1/dmenu/large.rasi",".config/i3/themes/rofi/1/dmenu/spotlight.rasi",".config/i3/themes/rofi/1/dmenu/squared_material.rasi",".config/i3/themes/rofi/1/dmenu/win_grid.rasi",".config/i3/themes/rofi/1/dmenu/win_list.rasi"],
+                [
+                    ".config/rofi/themes/dmenu/red/normal.rasi",
+                    ".config/rofi/themes/demnu/red/large.rasi"
+                ],
+                [
+                    ".config/rofi/themes/dmenu/blue/normal.rasi",
+                    ".config/rofi/themes/dmenu/blue/large.rasi",
+                    ".config/rofi/themes/dmenu/blue/spotlight.rasi",
+                    ".config/rofi/themes/dmenu/blue/squared_material.rasi",
+                    ".config/rofi/themes/dmenu/blue/win_grid.rasi",
+                    ".config/rofi/themes/dmenu/blue/win_list.rasi"
+                ],
 				[],
-				[".config/i3/themes/rofi/3/dmenu/normal.rasi",".config/i3/themes/rofi/3/dmenu/large.rasi",".config/i3/themes/rofi/3/dmenu/spotlight.rasi",".config/i3/themes/rofi/3/dmenu/squared_material.rasi",".config/i3/themes/rofi/3/dmenu/win_grid.rasi",".config/i3/themes/rofi/3/dmenu/win_list.rasi"]
+                [
+                    ".config/rofi/themes/dmenu/purple/normal.rasi",
+                    ".config/rofi/themes/dmenu/purple/large.rasi"
+                ]
 			]
 		},
 
@@ -20,18 +33,30 @@
 			"type": "apply",
 			"theme": "blue",
 			"options": [
-				".config/i3/themes/rofi/0/menu-theme-0.rasi",".config/i3/themes/rofi/1/menu-theme-1.rasi","",".config/i3/themes/rofi/3/menu-theme-3.rasi"
-			]
+			    ".config/rofi/themes/menu-theme/menu-theme-red.rasi",
+                ".config/rofi/themes/menu-theme/menu-theme-blue.rasi",
+                ".config/rofi/themes/menu-theme/menu-theme-red.rasi",
+                ".config/rofi/themes/menu-theme/menu-theme-purple.rasi"
+            ]
 		},
 
 		"network-manager": {
 			"type": "apply_list",
 			"theme": "blue",
 			"options": [
-				[".config/i3/themes/rofi/0/rofi-network-manager-0.conf", ".config/i3/themes/rofi/0/rofi-network-manager-0.rasi"],
-				[".config/i3/themes/rofi/1/rofi-network-manager-1.conf", ".config/i3/themes/rofi/1/rofi-network-manager-1.rasi"],
-				[],
-				[".config/i3/themes/rofi/3/rofi-network-manager-3.conf", ".config/i3/themes/rofi/3/rofi-network-manager-3.rasi"]
+                [
+                    ".config/rofi/themes/network-manager/red/rofi-network-manager.rasi",
+                    ".config/rofi/themes/network-manager/red/rofi-network-manager.conf"
+                ],
+                [
+                    ".config/rofi/themes/network-manager/blue/rofi-network-manager.rasi",
+                    ".config/rofi/themes/network-manager/blue/rofi-network-manager.conf"
+                ],
+                [],
+                [
+                    ".config/rofi/themes/network-manager/purple/rofi-network-manager.rasi",
+                    ".config/rofi/themes/network-manager/purple/rofi-network-manager.conf"
+                ]
 			]
 		},
 
@@ -39,7 +64,10 @@
 			"type": "apply",
 			"theme": "blue",
 			"options": [
-				".config/i3/themes/rofi/0/theme-0.rasi",".config/i3/themes/rofi/1/theme-1.rasi","",".config/i3/themes/rofi/3/theme-3.rasi"
+                ".config/rofi/themes/theme/theme-red.rasi",
+                ".config/rofi/themes/theme/theme-blue.rasi",
+                ".config/rofi/themes/theme/theme-red.rasi",
+                ".config/rofi/themes/theme/theme-purple.rasi"
 			]
 		}
 	}

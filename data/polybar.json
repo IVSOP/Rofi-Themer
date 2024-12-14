@@ -7,15 +7,21 @@
 			"type": "apply",
 			"theme": "blue",
 			"options": [
-				".config/i3/themes/polybar/0/polywins-colors-0",".config/i3/themes/polybar/1/polywins-colors-1", "", ".config/i3/themes/polybar/3/polywins-colors-3"
-			]
+                ".config/polybar/themes/polywins/polywins-red",
+			    ".config/polybar/themes/polywins/polywins-blue",
+                ".config/polybar/themes/polywins/polywins-red",
+                ".config/polybar/themes/polywins/polywins-purple" 
+            ]
 		},
 
 		"bar": {
 			"type": "apply",
 			"theme": "blue",
 			"options": [
-				"custombar","custombar-blue", "", "custombar-purple"
+				"custombar",
+                "custombar-blue",
+                "custombar",
+                "custombar-purple"
 			]
 		},
 
@@ -23,7 +29,10 @@
 			"type": "apply",
 			"theme": "blue",
 			"options": [
-				".config/i3/themes/polybar/0/theme-0",".config/i3/themes/polybar/1/theme-1","",".config/i3/themes/polybar/3/theme-3"
+                ".config/polybar/themes/theme/theme-red",
+                ".config/polybar/themes/theme/theme-blue",
+                ".config/polybar/themes/theme/theme-red",
+                ".config/polybar/themes/theme/theme-purple"
 			]
 		}
 	}
