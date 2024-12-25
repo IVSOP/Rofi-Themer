@@ -1,6 +1,6 @@
 * (-) main features
 ** (-) Add saving to a file. keep the order of the json!!!
-** ( ) Add systemd (forgor to push, lost everything I had on this)
+** ( ) Add tray support, copy nm-applet
 
 * ( ) optimizations
   ** ( ) Change so that number of each theme used is kept on each object and not calculated constantly
