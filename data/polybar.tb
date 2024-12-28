@@ -1,0 +1,3 @@
+polywins;apply;1;.config/i3/themes/polybar/0/polywins-colors-0;.config/i3/themes/polybar/1/polywins-colors-1;;.config/i3/themes/polybar/3/polywins-colors-3
+bar;apply;1;custombar;custombar-blue;;custombar-purple
+theme;apply;1;.config/i3/themes/polybar/0/theme-0;.config/i3/themes/polybar/1/theme-1;;.config/i3/themes/polybar/3/theme-3

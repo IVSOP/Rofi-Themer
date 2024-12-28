@@ -1,12 +1,22 @@
-* (-) main features
-** (-) Add saving to a file. keep the order of the json!!!
+* ( ) main features
+** ( ) Add saving to a file. keep the order of the json!!!
 ** ( ) Add tray support, copy nm-applet
+** (-) Error logging
+*** (-) Make the logging API (write to /tmp, support spacing according to depth in the stack, etc)
+*** ( ) Use logs to say where I am in the parsing process, with the correct spacing
+*** ( ) Catch errors when parsing json, output to log
+*** ( ) When num of options < num of themes, error (how to catch this? I would have to parse things twice? Or just display error when menu is queried?)
+*** ( ) When option is empty string, default to the first non-empty option. If all options are empty then get fucked, store empty strings or error out
+*** ( ) Validade json against some schema to ensure correct data types?
+*** ( ) Check things like numbers, strings and lists actually have that type, otherwise log error and exit
 
 * ( ) optimizations
-  ** ( ) Change so that number of each theme used is kept on each object and not calculated constantly
+** ( ) Change so that number of each theme used is kept on each object and not calculated constantly
+  
 * (-) QOL
 ** ( ) Abstract traversing elements, make it receive a function or something
 ** ( ) Add to main menu number of items active of each theme (is this done already??)
 ** ( ) Make Data parser call func to calculate themes (is this done already???)
 ** ( ) Check for empty strings in apply, so that option does not exist
 ** (x) Fix readme json code blocks markdown being messed up
+
