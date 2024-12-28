@@ -1,14 +1,14 @@
 {
-	"theme": "blue",
+    "theme": "blue",
 
-	"data": 
-	{
+    "data": 
+    {
 
-		"dmenu": {
-			"type": "list",
-			"theme": "blue",
-			"selected": 0,
-			"options": [
+        "dmenu": {
+            "type": "list",
+            "theme": "blue",
+            "selected": 0,
+            "options": [
                 [
                     ".config/rofi/themes/dmenu/red/normal.rasi",
                     ".config/rofi/themes/demnu/red/large.rasi"
@@ -21,29 +21,29 @@
                     ".config/rofi/themes/dmenu/blue/win_grid.rasi",
                     ".config/rofi/themes/dmenu/blue/win_list.rasi"
                 ],
-				[],
+                [],
                 [
                     ".config/rofi/themes/dmenu/purple/normal.rasi",
                     ".config/rofi/themes/dmenu/purple/large.rasi"
                 ]
-			]
-		},
+            ]
+        },
 
-		"menu-theme": {
-			"type": "apply",
-			"theme": "blue",
-			"options": [
-			    ".config/rofi/themes/menu-theme/menu-theme-red.rasi",
+        "menu-theme": {
+            "type": "apply",
+            "theme": "blue",
+            "options": [
+                ".config/rofi/themes/menu-theme/menu-theme-red.rasi",
                 ".config/rofi/themes/menu-theme/menu-theme-blue.rasi",
                 ".config/rofi/themes/menu-theme/menu-theme-red.rasi",
                 ".config/rofi/themes/menu-theme/menu-theme-purple.rasi"
             ]
-		},
+        },
 
-		"network-manager": {
-			"type": "apply_list",
-			"theme": "blue",
-			"options": [
+        "network-manager": {
+            "type": "apply_list",
+            "theme": "blue",
+            "options": [
                 [
                     ".config/rofi/themes/network-manager/red/rofi-network-manager.rasi",
                     ".config/rofi/themes/network-manager/red/rofi-network-manager.conf"
@@ -57,18 +57,18 @@
                     ".config/rofi/themes/network-manager/purple/rofi-network-manager.rasi",
                     ".config/rofi/themes/network-manager/purple/rofi-network-manager.conf"
                 ]
-			]
-		},
+            ]
+        },
 
-		"theme": {
-			"type": "apply",
-			"theme": "blue",
-			"options": [
+        "theme": {
+            "type": "apply",
+            "theme": "blue",
+            "options": [
                 ".config/rofi/themes/theme/theme-red.rasi",
                 ".config/rofi/themes/theme/theme-blue.rasi",
                 ".config/rofi/themes/theme/theme-red.rasi",
                 ".config/rofi/themes/theme/theme-purple.rasi"
-			]
-		}
-	}
+            ]
+        }
+    }
 }

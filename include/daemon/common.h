@@ -10,11 +10,11 @@
 // type of entry
 // ended up not using this powers of 2, didnt know how to do it in a switch statement
 enum TYPE {
-	APPLY = 1,        // apply this setting
-	SUB = 2,          // goes into subtable
-	LIST = 4,         // show list of options, can only pick 1
-	LIST_PICTURE = 8, // same but strings are pictures
-	APPLY_LIST = 16
+    APPLY = 1,        // apply this setting
+    SUB = 2,          // goes into subtable
+    LIST = 4,         // show list of options, can only pick 1
+    LIST_PICTURE = 8, // same but strings are pictures
+    APPLY_LIST = 16
 };
 
 #define APPLY_DATA std::vector<std::string>

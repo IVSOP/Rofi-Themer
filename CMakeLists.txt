@@ -18,7 +18,7 @@ add_subdirectory(external/json)
 #SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} ${GCC_COVERAGE_LINK_FLAGS}")
 
 if(DEFINED SOCK_PATH)
-	add_definitions(-DSOCK_PATH="${SOCK_PATH}")
+    add_definitions(-DSOCK_PATH="${SOCK_PATH}")
 else()
     message(STATUS "SOCK_PATH is not set. You can set it using: cmake -DSOCK_PATH=<value> <path_to_socket>")
 endif()
@@ -26,23 +26,23 @@ endif()
 
 add_executable(Rofi-Themer-daemon
         src/daemon/main.cpp
-		src/daemon/files.cpp
-		src/daemon/data.cpp
-		src/daemon/common.cpp
+        src/daemon/files.cpp
+        src/daemon/data.cpp
+        src/daemon/common.cpp
 )
 
 target_include_directories(Rofi-Themer-daemon
-		PUBLIC include/common        
-		PUBLIC include/daemon
+        PUBLIC include/common        
+        PUBLIC include/daemon
 )
 
 add_executable(Rofi-Themer-menu
-		src/menu/main.cpp
+        src/menu/main.cpp
 )
 
 target_include_directories(Rofi-Themer-menu
-		PUBLIC include/common        
-		PUBLIC include/menu
+        PUBLIC include/common        
+        PUBLIC include/menu
 )
 
 add_executable(Rofi-Themer-read
@@ -50,10 +50,10 @@ add_executable(Rofi-Themer-read
 )
 
 target_include_directories(Rofi-Themer-read
-		PUBLIC include/common        
-		PUBLIC include/read
+        PUBLIC include/common        
+        PUBLIC include/read
 )
 
 target_link_libraries(Rofi-Themer-daemon
-		PRIVATE nlohmann_json::nlohmann_json
+        PRIVATE nlohmann_json::nlohmann_json
 )

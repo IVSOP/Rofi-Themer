@@ -1,85 +1,85 @@
 {
-	"color-icons": {
-		"red": "/home/ivsopi3/.config/i3/lock/red1.png",
-		"blue": "/home/ivsopi3/.config/i3/lock/blue1.png",
-		"white": "/home/ivsopi3/.config/i3/lock/white1.png",
-		"purple": "/home/ivsopi3/.config/i3/lock/purple1.png"
-	},
+    "color-icons": {
+        "red": "/home/ivsopi3/.config/i3/lock/red1.png",
+        "blue": "/home/ivsopi3/.config/i3/lock/blue1.png",
+        "white": "/home/ivsopi3/.config/i3/lock/white1.png",
+        "purple": "/home/ivsopi3/.config/i3/lock/purple1.png"
+    },
 
-	"theme": "blue",
+    "theme": "blue",
 
-	"type": "table",
+    "type": "table",
 
-	"data": {
+    "data": {
 
-		"background": {
-			"type": "list_picture",
-			"theme": "blue",
-			"selected": 0,
-			"options": [
-				[
+        "background": {
+            "type": "list_picture",
+            "theme": "blue",
+            "selected": 0,
+            "options": [
+                [
                     "/home/ivsopi3/BG/TF22.jpg",
                     "/home/ivsopi3/BG/TF21.jpg",
                     "/home/ivsopi3/BG/HorizonZD.jpg",
-				    "/home/ivsopi3/BG/BladeR1.jpg",
+                    "/home/ivsopi3/BG/BladeR1.jpg",
                     "/home/ivsopi3/BG/Dishonored-palace.png",
                     "/home/ivsopi3/BG/Dishonored-palace-2.png",
-				    "/home/ivsopi3/BG/Dishonored-palace-3.png",
+                    "/home/ivsopi3/BG/Dishonored-palace-3.png",
                     "/home/ivsopi3/BG/Dishonored-palace-4.png",
                     "/home/ivsopi3/BG/Dishonored-palace-5.png"
                 ],
-				[
+                [
                     "/home/ivsopi3/BG/KSP1.jpg",
                     "/home/ivsopi3/BG/KSP2.png",
                     "/home/ivsopi3/BG/KSP3.png",
                     "/home/ivsopi3/BG/KSP4.png"
                 ],
-				[],
-				[
+                [],
+                [
                     "/home/ivsopi3/BG/BladeR3.jpg"
                 ]
-			]
-		},
-		
-		"dunst": {
-			"type": "apply",
-			"theme": "blue",
-			"options": [
-				".config/dunst/themes/dunstrc-red",
-				".config/dunst/themes/dunstrc-blue",
+            ]
+        },
+        
+        "dunst": {
+            "type": "apply",
+            "theme": "blue",
+            "options": [
                 ".config/dunst/themes/dunstrc-red",
-				".config/dunst/themes/dunstrc-purple"
-			]
-		},
-		
-		"polybar": {
-			"type": "table"
-		},
-		
-		"rofi": {
-			"type": "table"
-		},
-		
-		"i3": {
-			"type": "apply",
-			"theme": "blue",
-			"options": [
-				".config/i3/themes/theme-red",
+                ".config/dunst/themes/dunstrc-blue",
+                ".config/dunst/themes/dunstrc-red",
+                ".config/dunst/themes/dunstrc-purple"
+            ]
+        },
+        
+        "polybar": {
+            "type": "table"
+        },
+        
+        "rofi": {
+            "type": "table"
+        },
+        
+        "i3": {
+            "type": "apply",
+            "theme": "blue",
+            "options": [
+                ".config/i3/themes/theme-red",
                 ".config/i3/themes/theme-blue",
                 ".config/i3/themes/theme-red",
                 ".config/i3/themes/theme-purple"
-			]
-		},
-		
-		"i3lock": {
-			"type": "apply",
-			"theme": "blue",
-			"options": [
-				".config/i3/lock/noise_red.png",
+            ]
+        },
+        
+        "i3lock": {
+            "type": "apply",
+            "theme": "blue",
+            "options": [
+                ".config/i3/lock/noise_red.png",
                 ".config/i3/lock/noise_blue.png",
                 ".config/i3/lock/noise_white.png",
                 ".config/i3/lock/noise_purple.png"
-			]
-		}
-	}
+            ]
+        }
+    }
 }
