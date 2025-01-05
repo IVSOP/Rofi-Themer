@@ -39,7 +39,7 @@ void reply(const std::string &string, int clientSock) {
     // write(STDOUT_FILENO, &msg, sizeof(OutMessage));
 }
 
-void handleMessage(Data &data, const Message &msg, int clientSock) {
+void handleMessage(Data &data, const Message &msg, int clientSock, const std::string &dataDir) {
     std::string string = msg.str; // unecessary copy?
     switch (msg.type) {
         case READ:
@@ -47,6 +47,7 @@ void handleMessage(Data &data, const Message &msg, int clientSock) {
             break;
         case MENU:
             reply(data.menuFirst(string), clientSock);
+            data.saveTo(dataDir);
             break;
         default:
             reply("error", clientSock);
@@ -94,8 +95,8 @@ int main (int argc, char **argv) {
     }
 
     //////////////////////////////////////////////// parsing theme file
-
-    Data data(argv[1]); // will parse the data
+    const std::string dataDir = argv[1];
+    Data data(dataDir); // will parse the data
 #ifdef DEBUG
     data.print();
 #endif
@@ -163,7 +164,7 @@ int main (int argc, char **argv) {
         puts("received:");
         puts(msg.str);
 #endif
-        handleMessage(data, msg, clientSock);
+        handleMessage(data, msg, clientSock, dataDir);
 
         close(clientSock);
     }

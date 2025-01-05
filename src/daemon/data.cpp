@@ -5,7 +5,7 @@
 #define ALL_STRING "*" // string representing ALL. whatever you put here will be a reserved name, no element in your json can have this name
 
 Data::Data(const std::string &dataDir)
-: data(parsefile(dataDir, "main.json"))
+: data(parsefile(dataDir, "main.json")), themeToID()
 {
 
 // #ifdef DEBUG
@@ -22,34 +22,30 @@ Data::Data(const std::string &dataDir)
 json Data::parsefile(const std::string &dataDir, const std::string &name) const {
     std::cout << "Parsing " << dataDir + name << std::endl;
 
-    FileHandler filehandler(dataDir + name);
+    FileHandler filehandler(dataDir + name, FileModes::Read);
 
     json parsed = filehandler.readjson();
 
     std::unordered_map<std::string, unsigned int> themes;
 
-
     for (auto& [key, element] : parsed["data"].items()) {
-        // if (! key.starts_with('_')) { // elements starting with _ are not considered. other option was data: {options here} but then the code would be a mess
+        // recursively parse new tables
         if (element["type"] == "table") {
-            // just to avoid deleting it early
-            // I trust the compiler will figure this out
             json newElement = parsefile(dataDir, key + ".json");
             newElement["type"] = "table";
-            element = newElement;
+            element = newElement; // !!!! this actually replaces things within the json object, since element is a ref
         }
 
-        // store the themes of the children
+        // keep a count of how many times each theme shows up for the elements in this table
         auto theme = themes.find(element["theme"]);
         if (theme != themes.end()) {
             theme->second ++;
         } else {
             themes[element["theme"]] = 0;
         }
-        // }
     }
 
-    // calculate the most used theme
+    // calculate the most used theme. will be the theme selected for this table
     unsigned int max = 0;
     std::string theme = "";
     for (const std::pair<const std::string, unsigned int>& pair : themes) {
@@ -384,4 +380,38 @@ std::string Data::menuFirst(std::string &input) {
         this->data["theme"] = calcMostUsed(this->data);
         return res;
     }
+}
+
+void saveJson(const std::string &dataDir, const std::string &name, json &data) {
+    // for all entries in the data, if one of theme is a table,
+    // remove it into a separate json object and save it
+    // this way things are in separate files, as they are supposed to
+    
+    std::string filename = name + ".json";
+
+    // TODO: instead of copying things there has to be something faster
+    for (auto& [key, element] : data["data"].items()) {
+        if (element["type"] == "table") {
+            json copy = element; // copy the element so we can save it separately
+            element = { // replace element with ref to table. name is already there, no need to add it
+                {"type", "table"}
+            };
+            saveJson(dataDir, key, copy);
+        }
+    }
+
+    // save the table to a file
+    FileHandler filehandler(dataDir + filename, FileModes::Trunc);
+    filehandler.dumpjson(data, 4);
+}
+
+void Data::saveTo(const std::string &dataDir) {
+    // std::cout << data.dump(4) << std::endl;
+
+    json data_copy = this->data;
+    saveJson(dataDir, "main", data_copy);
+    std::cout << data_copy.dump(4) << std::endl;
+
+    // FileHandler filehandler(dataDir + filename, FileModes::Write);
+    
 }

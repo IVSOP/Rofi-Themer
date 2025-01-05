@@ -5,9 +5,9 @@
 // actual data built from the data files, also contains infos that are global to them, like color icons
 
 struct Data {
-    json data;
-    std::map<std::string, unsigned int> themeToID;
-
+    json data; // the actual data, I just keep it as json even internally
+    std::map<std::string, unsigned int> themeToID; // map that given a theme returns its ID
+    // TODO: make these pointers or something
     Data(const std::string &dataDir);
     ~Data() = default;
 
@@ -46,6 +46,10 @@ struct Data {
     std::string readList(std::string &input, const json &data) const;
     std::string readListApply(std::string &input, const json &data) const;
     std::string readApply(std::string &input, const json &data) const;
+
+
+
+    void saveTo(const std::string &filename);
 };
 
 #endif
