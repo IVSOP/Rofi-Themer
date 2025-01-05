@@ -320,7 +320,6 @@ std::string Data::menuTable(const std::string &theme, std::string &input, const 
             return menuTable(theme, input, back, name, _data, color_icons);
         }
 
-        // printf("table option selected: %s input is %s\n", nextname.c_str(), input.c_str());
         input.erase(0, pos + 1);
 
         json &next = data[nextname];

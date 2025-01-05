@@ -14,6 +14,7 @@
 * ( ) optimizations
 ** ( ) Change so that number of each theme used is kept on each object and not calculated constantly (I think it recurses down each time it is needed, might have changed this already and forgor)
 ** ( ) Currently, saving creates 1 json object for each table, copies json objects constantly, and linear searches for things that are tables
+** ( ) IMPORTANT: at least only save when something is actually written/changed, currently I save even when just traversing menus
   
 * (-) QOL
 ** ( ) Document the functions

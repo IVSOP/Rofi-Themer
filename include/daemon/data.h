@@ -14,13 +14,17 @@ struct Data {
     // parses the file, calculates most used theme, returns json with all the data
     json parsefile(const std::string &dataDir, const std::string &name) const;
 
-    // only the main Data has the color-icons
-    // instead of making another struct or something,
-    // main should call this to get the color icons
+    // entry point for menu queries
+    // only the main table's data has the color-icons
     std::string menuFirst(std::string &input);
 
+    // debug print
     void print() const;
+
+    // entry point for read queries
     std::string read(std::string &input) const;
+
+    // called when parsing menu queries, depending on the type of the data
     /*
     theme: theme that was clicked in the main menu
     input: query string parsed so far
@@ -34,22 +38,24 @@ struct Data {
     std::string menuList(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data, const json &color_icons);
     std::string menuListPicture(const std::string &theme, std::string &input, const std::string &back, const std::string &name, json &_data);
 
+    // apply themes recursivelly to a table
     void applyAll(const std::string &theme, json &data);
 
-
+    // get ID of a theme, given its name
     unsigned int getThemeID(const std::string &theme) const;
     // tries to find the element in the given data 
     std::string readElement(const std::string &name, std::string &input, const json &data) const;
     // already receives element itself
     std::string processElement(std::string &input, const json &element) const;
+
+    // used by read queries, depending on the type of the data
     std::string readTable(std::string &input, const json &data) const;
     std::string readList(std::string &input, const json &data) const;
     std::string readListApply(std::string &input, const json &data) const;
     std::string readApply(std::string &input, const json &data) const;
 
-
-
-    void saveTo(const std::string &filename);
+    // dump
+    void saveTo(const std::string &dataDir);
 };
 
 #endif
