@@ -26,9 +26,11 @@ endif()
 
 add_executable(Rofi-Themer-daemon
         src/daemon/main.cpp
-        src/daemon/files.cpp
         src/daemon/data.cpp
         src/daemon/common.cpp
+        src/common/files.cpp
+        src/common/crash.cpp
+        src/common/logs.cpp
 )
 
 target_include_directories(Rofi-Themer-daemon
@@ -38,6 +40,7 @@ target_include_directories(Rofi-Themer-daemon
 
 add_executable(Rofi-Themer-menu
         src/menu/main.cpp
+        src/common/crash_print.cpp
 )
 
 target_include_directories(Rofi-Themer-menu
@@ -47,6 +50,7 @@ target_include_directories(Rofi-Themer-menu
 
 add_executable(Rofi-Themer-read
         src/read/main.cpp
+        src/common/crash_print.cpp
 )
 
 target_include_directories(Rofi-Themer-read
@@ -57,3 +61,4 @@ target_include_directories(Rofi-Themer-read
 target_link_libraries(Rofi-Themer-daemon
         PRIVATE nlohmann_json::nlohmann_json
 )
+

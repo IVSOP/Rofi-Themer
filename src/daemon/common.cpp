@@ -1,4 +1,4 @@
-#include "common.h"
+#include "common.hpp"
 
 #define INIT_ESCAPE '\0'
 #define ESCAPE_SEP '\x1f'

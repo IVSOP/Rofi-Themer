@@ -1,5 +1,5 @@
-#include "errors.h"
-#include "message.h"
+#include "message.hpp"
+#include "crash_print.hpp"
 
 // like 50% of these are unused
 #include <stdlib.h>
@@ -24,10 +24,7 @@
 int main () {
 
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
-    if (sockfd < 0) {
-        puts("Error opening socket");
-        return EXIT_FAILURE;
-    }
+    CRASH_IF(sockfd < 0, "Error opening socket");
 
     struct sockaddr_un server_addr;
     server_addr.sun_family = AF_UNIX;
@@ -37,10 +34,7 @@ int main () {
 
     socklen_t data_len = strlen(server_addr.sun_path) + sizeof(server_addr.sun_family); // wtf????? should I just use sizeof(addr))???
 
-    if (connect(sockfd, (struct sockaddr *)&server_addr, data_len) < 0) {
-        printf("Error connecting to daemon at %s\n", server_addr.sun_path);
-        return EXIT_FAILURE;
-    }
+    CRASH_IF((connect(sockfd, (struct sockaddr *)&server_addr, data_len) < 0), "Error connecting to daemon at " + std::string(server_addr.sun_path) + "\n");
 
     Message msg;
     msg.type = MENU;
@@ -49,7 +43,7 @@ int main () {
     char *info = getenv("ROFI_INFO");
     if (info != nullptr) {
         strncpy(msg.str, info, MESSAGE_STR_SIZE - 1);  // for the compiler to shut up. I use write() instead of print so it should be fine either way
-    }
+    } // else ???????????
 
 
     write(sockfd, &msg, sizeof(Message));

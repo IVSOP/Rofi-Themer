@@ -1,6 +1,6 @@
-#include "data.h"
-#include "errors.h"
-#include "common.h"
+#include "data.hpp"
+#include "crash.hpp"
+#include "common.hpp"
 
 #define ALL_STRING "*" // string representing ALL. whatever you put here will be a reserved name, no element in your json can have this name
 

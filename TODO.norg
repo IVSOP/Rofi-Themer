@@ -3,7 +3,7 @@
 ** ( ) Add tray support, copy nm-applet
 ** (-) Error logging
 *** (-) IMPORTANT: allow Rofi-themer-read to give invalid output (catch exception from json)
-*** (-) Make the logging API (write to /tmp, support spacing according to depth in the stack, etc)
+*** (x) Make the logging API (write to /tmp, support spacing according to depth in the stack, etc)
 *** ( ) Use logs to say where I am in the parsing process, with the correct spacing
 *** ( ) Catch errors when parsing json, output to log
 *** ( ) When num of options < num of themes, error (how to catch this? I would have to parse things twice? Or just display error when menu is queried?)
@@ -22,4 +22,5 @@
 ** ( ) Add to main menu number of items active of each theme (is this done already??)
 ** ( ) Make Data parser call func to calculate themes (is this done already???)
 ** ( ) Check for empty strings in apply, so that option does not exist
+** ( ) Complete rework of crash and log so I can specify if I want to print or output to file, select which file, etc. there is probably some lib for this already
 

@@ -1,5 +1,5 @@
-#include "errors.h"
-#include "message.h"
+#include "crash_print.hpp"
+#include "message.hpp"
 
 // like 50% of these are unused
 #include <stdlib.h>
@@ -23,16 +23,10 @@
 
 int main (int argc, char **argv) {
 
-    if (argc < 2) {
-        print_error("Insuficient arguments: need query to send")
-        return EXIT_FAILURE;
-    }
+    CRASH_IF(argc < 2, "Insuficient arguments: need query to send");
 
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
-    if (sockfd < 0) {
-        print_error("Error opening socket");
-        return EXIT_FAILURE;
-    }
+    CRASH_IF(sockfd < 0, "Error opening socket");
 
     struct sockaddr_un server_addr;
     server_addr.sun_family = AF_UNIX;
@@ -42,10 +36,7 @@ int main (int argc, char **argv) {
 
     socklen_t data_len = strlen(server_addr.sun_path) + sizeof(server_addr.sun_family); // wtf????? should I just use sizeof(addr))???
 
-    if (connect(sockfd, (struct sockaddr *)&server_addr, data_len) < 0) {
-        fprintf(stderr, "Error connecting to daemon at %s\n", server_addr.sun_path);
-        return EXIT_FAILURE;
-    }
+    CRASH_IF(connect(sockfd, (struct sockaddr *)&server_addr, data_len) < 0, "Error connecting to daemon at " + std::string(server_addr.sun_path) + "\n");
 
     Message msg;
     msg.type = READ;

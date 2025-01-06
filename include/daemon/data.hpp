@@ -1,7 +1,7 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include "files.h"
+#include "files.hpp"
 // actual data built from the data files, also contains infos that are global to them, like color icons
 
 struct Data {

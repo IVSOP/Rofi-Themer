@@ -1,6 +1,6 @@
-#include "errors.h"
-#include "data.h"
-#include "message.h"
+#include "crash.hpp"
+#include "data.hpp"
+#include "message.hpp"
 
 // like 50% of these are unused
 #include <stdlib.h>
@@ -32,10 +32,7 @@ void reply(const std::string &string, int clientSock) {
     // also missing check for size of string too big
     memcpy(msg.str, string.c_str(), string.size());
     msg.len = string.size();
-    if (write(clientSock, &msg, sizeof(OutMessage)) < 0) {
-        print_error("Error writing data"); // stdout and stderr will be closed but whatever
-        exit(EXIT_FAILURE);
-    }
+    CRASH_IF((write(clientSock, &msg, sizeof(OutMessage)) < 0), "Error writing data"); // stdout and stderr will be closed but whatever
     // write(STDOUT_FILENO, &msg, sizeof(OutMessage));
 }
 
@@ -67,10 +64,7 @@ int main (int argc, char **argv) {
 
     // Create a Unix domain socket
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
-    if (sockfd < 0) {
-        print_error("Error creating socket\n");
-        return EXIT_FAILURE;
-    }
+    CRASH_IF(sockfd < 0, "Error creating socket");
 
     // Define the address structure for the socket
     struct sockaddr_un addr;
@@ -82,16 +76,14 @@ int main (int argc, char **argv) {
 
     // Bind the socket to the address
     if (bind(sockfd, (struct sockaddr *)&addr, len) < 0) {
-        print_error("Error binding socket\n");
         close(sockfd);
-        return EXIT_FAILURE;
+        CRASH_IF(true, "Error binding socket");
     }
 
     // Listen for incoming connections
     if (listen(sockfd, MAX_CONN) < 0) {
-        print_error("Error listening on socket\n");
         close(sockfd);
-        return EXIT_FAILURE;
+        CRASH_IF(true, "Error listening on socket");
     }
 
     //////////////////////////////////////////////// parsing theme file
@@ -154,9 +146,8 @@ int main (int argc, char **argv) {
         socklen_t sock_len = sizeof(addr);
         int clientSock = accept(sockfd, (struct sockaddr*)&addr, &sock_len);
         if (clientSock < 0) {
-            print_error("Error accepting connection\n");
             close(sockfd);
-            return EXIT_FAILURE;
+            CRASH_IF(true, "Error accepting connection");
         }
 
         read(clientSock, &msg, sizeof(Message));

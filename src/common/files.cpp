@@ -1,22 +1,16 @@
-#include "files.h"
-#include "errors.h"
+#include "files.hpp"
+#include "crash.hpp"
 
 FileHandler::FileHandler(const std::string &path)
 : file(path)
 {
-    if (!file.is_open()) {
-        print_error(("Error opening file" + path).c_str());
-        exit(1);
-    }
+    CRASH_IF(!file.is_open(), "Error opening file " + path);
 }
 
 FileHandler::FileHandler(const std::string &path, FileMode flags)
 : file(path, flags)
 {
-	if (!file.is_open()) {
-        print_error(("Error opening file: " + path).c_str());
-        exit(1);
-    }
+    CRASH_IF(!file.is_open(), "Error opening file " + path);
 }
 
 FileHandler::~FileHandler() {
