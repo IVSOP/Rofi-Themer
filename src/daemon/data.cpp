@@ -1,5 +1,6 @@
 #include "data.hpp"
 #include "crash.hpp"
+#include "logs.hpp"
 #include "common.hpp"
 
 #define ALL_STRING "*" // string representing ALL. whatever you put here will be a reserved name, no element in your json can have this name
@@ -155,7 +156,12 @@ std::string Data::readElement(const std::string &name, std::string &input, const
     // printf("Read element is looking for name %s\n", name.c_str());
 
     // std::cout << _data.dump(2) << std::endl;
+    if (! _data.contains(name)) {
+        print_error("'" + name + "' was not found");
+        return "Error: " + name + " was not found";
+    }
     const json &data = _data[name];
+    // data HAS to have type
     const std::string &type = data["type"];
 
     if (type == "table") {
