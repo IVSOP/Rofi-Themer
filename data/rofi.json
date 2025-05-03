@@ -1,9 +1,6 @@
 {
     "theme": "blue",
-
-    "data": 
-    {
-
+    "data": {
         "dmenu": {
             "type": "list",
             "theme": "blue",
@@ -28,7 +25,6 @@
                 ]
             ]
         },
-
         "menu-theme": {
             "type": "apply",
             "theme": "blue",
@@ -39,7 +35,6 @@
                 ".config/rofi/themes/menu-theme/menu-theme-purple.rasi"
             ]
         },
-
         "network-manager": {
             "type": "apply_list",
             "theme": "blue",
@@ -59,7 +54,6 @@
                 ]
             ]
         },
-
         "theme": {
             "type": "apply",
             "theme": "blue",
@@ -70,5 +64,6 @@
                 ".config/rofi/themes/theme/theme-purple.rasi"
             ]
         }
-    }
+    },
+    "type": "table"
 }

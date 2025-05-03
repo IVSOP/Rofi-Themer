@@ -1,8 +1,6 @@
 {
     "theme": "blue",
-
-    "data":
-    {
+    "data": {
         "polywins": {
             "type": "apply",
             "theme": "blue",
@@ -10,10 +8,9 @@
                 ".config/polybar/themes/polywins/polywins-red",
                 ".config/polybar/themes/polywins/polywins-blue",
                 ".config/polybar/themes/polywins/polywins-red",
-                ".config/polybar/themes/polywins/polywins-purple" 
+                ".config/polybar/themes/polywins/polywins-purple"
             ]
         },
-
         "bar": {
             "type": "apply",
             "theme": "blue",
@@ -24,7 +21,6 @@
                 "custombar-purple"
             ]
         },
-
         "theme": {
             "type": "apply",
             "theme": "blue",
@@ -35,5 +31,6 @@
                 ".config/polybar/themes/theme/theme-purple"
             ]
         }
-    }
+    },
+    "type": "table"
 }

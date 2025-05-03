@@ -5,13 +5,9 @@
         "white": "/home/ivsopi3/.config/i3/lock/white1.png",
         "purple": "/home/ivsopi3/.config/i3/lock/purple1.png"
     },
-
     "theme": "blue",
-
     "type": "table",
-
     "data": {
-
         "background": {
             "type": "list_picture",
             "theme": "blue",
@@ -40,7 +36,6 @@
                 ]
             ]
         },
-        
         "dunst": {
             "type": "apply",
             "theme": "blue",
@@ -51,15 +46,12 @@
                 ".config/dunst/themes/dunstrc-purple"
             ]
         },
-        
         "polybar": {
             "type": "table"
         },
-        
         "rofi": {
             "type": "table"
         },
-        
         "i3": {
             "type": "apply",
             "theme": "blue",
@@ -70,7 +62,6 @@
                 ".config/i3/themes/theme-purple"
             ]
         },
-        
         "i3lock": {
             "type": "apply",
             "theme": "blue",
@@ -79,6 +70,25 @@
                 ".config/i3/lock/noise_blue.png",
                 ".config/i3/lock/noise_white.png",
                 ".config/i3/lock/noise_purple.png"
+            ]
+        },
+        "waybar": {
+            "type": "apply_list",
+            "theme": "blue",
+            "options": [
+                [
+                    ".config/waybar/themes/red.jsonc",
+                    ".config/waybar/themes/red.css"
+                ],
+                [
+                    ".config/waybar/themes/blue.jsonc",
+                    ".config/waybar/themes/blue.css"
+                ],
+                [],
+                [
+                    ".config/waybar/themes/purple.jsonc",
+                    ".config/waybar/themes/purple.css"
+                ]
             ]
         }
     }
