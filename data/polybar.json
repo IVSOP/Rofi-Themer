@@ -1,34 +1,37 @@
 {
-    "theme": "blue",
+    "theme": "focus",
     "data": {
         "polywins": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 ".config/polybar/themes/polywins/polywins-red",
                 ".config/polybar/themes/polywins/polywins-blue",
                 ".config/polybar/themes/polywins/polywins-red",
-                ".config/polybar/themes/polywins/polywins-purple"
+                ".config/polybar/themes/polywins/polywins-purple",
+                ".config/polybar/themes/polywins/polywins-red"
             ]
         },
         "bar": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 "custombar",
                 "custombar-blue",
                 "custombar",
-                "custombar-purple"
+                "custombar-purple",
+                "custombar"
             ]
         },
         "theme": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 ".config/polybar/themes/theme/theme-red",
                 ".config/polybar/themes/theme/theme-blue",
                 ".config/polybar/themes/theme/theme-red",
-                ".config/polybar/themes/theme/theme-purple"
+                ".config/polybar/themes/theme/theme-purple",
+                ".config/polybar/themes/theme/theme-red"
             ]
         }
     },

@@ -3,14 +3,15 @@
         "red": "/home/ivsopi3/.config/i3/lock/red1.png",
         "blue": "/home/ivsopi3/.config/i3/lock/blue1.png",
         "white": "/home/ivsopi3/.config/i3/lock/white1.png",
-        "purple": "/home/ivsopi3/.config/i3/lock/purple1.png"
+        "purple": "/home/ivsopi3/.config/i3/lock/purple1.png",
+        "focus": "/home/ivsopi3/.config/i3/lock/black.png"
     },
-    "theme": "blue",
+    "theme": "focus",
     "type": "table",
     "data": {
         "background": {
             "type": "list_picture",
-            "theme": "blue",
+            "theme": "focus",
             "selected": 0,
             "options": [
                 [
@@ -30,20 +31,26 @@
                     "/home/ivsopi3/BG/KSP3.png",
                     "/home/ivsopi3/BG/KSP4.png"
                 ],
-                [],
+                [
+                    "/home/ivsopi3/BG/TF22.jpg"
+                ],
                 [
                     "/home/ivsopi3/BG/BladeR3.jpg"
+                ],
+                [
+                    "/home/ivsopi3/.config/i3/lock/blac1.png"
                 ]
             ]
         },
         "dunst": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 ".config/dunst/themes/dunstrc-red",
                 ".config/dunst/themes/dunstrc-blue",
                 ".config/dunst/themes/dunstrc-red",
-                ".config/dunst/themes/dunstrc-purple"
+                ".config/dunst/themes/dunstrc-purple",
+                ".config/dunst/themes/dunstrc-blue"
             ]
         },
         "polybar": {
@@ -54,27 +61,29 @@
         },
         "i3": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 ".config/i3/themes/theme-red",
                 ".config/i3/themes/theme-blue",
-                ".config/i3/themes/theme-red",
-                ".config/i3/themes/theme-purple"
+                ".config/i3/themes/theme-white",
+                ".config/i3/themes/theme-purple",
+                ".config/i3/themes/theme-focus"
             ]
         },
         "i3lock": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 ".config/i3/lock/noise_red.png",
                 ".config/i3/lock/noise_blue.png",
                 ".config/i3/lock/noise_white.png",
-                ".config/i3/lock/noise_purple.png"
+                ".config/i3/lock/noise_purple.png",
+                ".config/i3/lock/black.png"
             ]
         },
         "waybar": {
             "type": "apply_list",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 [
                     ".config/waybar/themes/red.jsonc",
@@ -84,10 +93,17 @@
                     ".config/waybar/themes/blue.jsonc",
                     ".config/waybar/themes/blue.css"
                 ],
-                [],
+                [
+                    ".config/waybar/themes/blue.jsonc",
+                    ".config/waybar/themes/blue.css"
+                ],
                 [
                     ".config/waybar/themes/purple.jsonc",
                     ".config/waybar/themes/purple.css"
+                ],
+                [
+                    ".config/waybar/themes/red.jsonc",
+                    ".config/waybar/themes/red.css"
                 ]
             ]
         }

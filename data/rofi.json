@@ -1,9 +1,9 @@
 {
-    "theme": "blue",
+    "theme": "focus",
     "data": {
         "dmenu": {
             "type": "list",
-            "theme": "blue",
+            "theme": "focus",
             "selected": 0,
             "options": [
                 [
@@ -18,26 +18,34 @@
                     ".config/rofi/themes/dmenu/blue/win_grid.rasi",
                     ".config/rofi/themes/dmenu/blue/win_list.rasi"
                 ],
-                [],
+                [
+                    ".config/rofi/themes/dmenu/blue/normal.rasi",
+                    ".config/rofi/themes/dmenu/blue/large.rasi"
+                ],
                 [
                     ".config/rofi/themes/dmenu/purple/normal.rasi",
                     ".config/rofi/themes/dmenu/purple/large.rasi"
+                ],
+                [
+                    ".config/rofi/themes/dmenu/blue/normal.rasi",
+                    ".config/rofi/themes/dmenu/blue/large.rasi"
                 ]
             ]
         },
         "menu-theme": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 ".config/rofi/themes/menu-theme/menu-theme-red.rasi",
                 ".config/rofi/themes/menu-theme/menu-theme-blue.rasi",
                 ".config/rofi/themes/menu-theme/menu-theme-red.rasi",
-                ".config/rofi/themes/menu-theme/menu-theme-purple.rasi"
+                ".config/rofi/themes/menu-theme/menu-theme-purple.rasi",
+                ".config/rofi/themes/menu-theme/menu-theme-blue.rasi"
             ]
         },
         "network-manager": {
             "type": "apply_list",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 [
                     ".config/rofi/themes/network-manager/red/rofi-network-manager.rasi",
@@ -47,21 +55,29 @@
                     ".config/rofi/themes/network-manager/blue/rofi-network-manager.rasi",
                     ".config/rofi/themes/network-manager/blue/rofi-network-manager.conf"
                 ],
-                [],
+                [
+                    ".config/rofi/themes/network-manager/blue/rofi-network-manager.rasi",
+                    ".config/rofi/themes/network-manager/blue/rofi-network-manager.conf"
+                ],
                 [
                     ".config/rofi/themes/network-manager/purple/rofi-network-manager.rasi",
                     ".config/rofi/themes/network-manager/purple/rofi-network-manager.conf"
+                ],
+                [
+                    ".config/rofi/themes/network-manager/blue/rofi-network-manager.rasi",
+                    ".config/rofi/themes/network-manager/blue/rofi-network-manager.conf"
                 ]
             ]
         },
         "theme": {
             "type": "apply",
-            "theme": "blue",
+            "theme": "focus",
             "options": [
                 ".config/rofi/themes/theme/theme-red.rasi",
                 ".config/rofi/themes/theme/theme-blue.rasi",
                 ".config/rofi/themes/theme/theme-red.rasi",
-                ".config/rofi/themes/theme/theme-purple.rasi"
+                ".config/rofi/themes/theme/theme-purple.rasi",
+                ".config/rofi/themes/theme/theme-blue.rasi"
             ]
         }
     },
